@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="MI">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="SEGBGSDB05\SQL2:GROUPINFRA\wrightj">
+          <Created>2015-11-13T13:19:12.9049191+00:00</Created>
+          <Type>SQL</Type>
+          <Server>SEGBGSDB05\SQL2</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>master</InitialDB>
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="call_spUT_SearchAllTables.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>call_spUT_SearchAllTables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CopyTables.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>CopyTables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="FindColumn.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>FindColumn.sql</FullPath>
+        </FileNode>
+        <FileNode Name="ProductGroupStructure.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>ProductGroupStructure.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Products.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Products.sql</FullPath>
+        </FileNode>
+        <FileNode Name="vwAAOSConsultants.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>vwAAOSConsultants.sql</FullPath>
+        </FileNode>
+        <FileNode Name="vwAAOSDoors.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>vwAAOSDoors.sql</FullPath>
+        </FileNode>
+        <FileNode Name="vwAAOSHWSets.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>vwAAOSHWSets.sql</FullPath>
+        </FileNode>
+        <FileNode Name="vwAAOSProjectHardware.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>vwAAOSProjectHardware.sql</FullPath>
+        </FileNode>
+        <FileNode Name="vwAAOSProjects.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>vwAAOSProjects.sql</FullPath>
+        </FileNode>
+        <FileNode Name="working.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>working.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>
