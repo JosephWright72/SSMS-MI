@@ -3,6 +3,18 @@
   <Items>
     <LogicalFolder Name="Connections" Type="2" Sorted="true">
       <Items>
+        <ConnectionNode Name="segbgsdb05.ad.global\sql2:GROUPINFRA\wrightj">
+          <Created>2015-11-24T12:22:16.2159207+00:00</Created>
+          <Type>SQL</Type>
+          <Server>segbgsdb05.ad.global\sql2</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
         <ConnectionNode Name="SEGBGSDB05\SQL2:GROUPINFRA\wrightj">
           <Created>2015-11-13T13:19:12.9049191+00:00</Created>
           <Type>SQL</Type>
@@ -62,14 +74,14 @@
           <FullPath>vwAAOSDoors.sql</FullPath>
         </FileNode>
         <FileNode Name="vwAAOSHWSets.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:segbgsdb05.ad.global\sql2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>segbgsdb05.ad.global\sql2</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>vwAAOSHWSets.sql</FullPath>
         </FileNode>
         <FileNode Name="vwAAOSProjectHardware.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:segbgsdb05.ad.global\sql2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>segbgsdb05.ad.global\sql2</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>vwAAOSProjectHardware.sql</FullPath>
         </FileNode>
@@ -79,9 +91,15 @@
           <AssociatedConnUserName />
           <FullPath>vwAAOSProjects.sql</FullPath>
         </FileNode>
+        <FileNode Name="vwProducts.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:segbgsdb05.ad.global\sql2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>segbgsdb05.ad.global\sql2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>vwProducts.sql</FullPath>
+        </FileNode>
         <FileNode Name="working.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SEGBGSDB05\SQL2:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>SEGBGSDB05\SQL2</AssociatedConnSrvName>
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:segbgsdb05.ad.global\sql2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>segbgsdb05.ad.global\sql2</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>working.sql</FullPath>
         </FileNode>

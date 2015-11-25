@@ -9,6 +9,4 @@ CREATE TABLE dbo.Products (ID INT IDENTITY (1,1), Vendor VARCHAR(MAX), VendorAbb
 
 GO
 
-DELETE FROM dbo.Products
-GO
 

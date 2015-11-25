@@ -4,6 +4,3 @@ FROM sys.columns c
 WHERE upper(c.name) LIKE '%KEYNOTE%'
 order by 2,1
 
-
-
-select * from hardwarestandard

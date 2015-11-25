@@ -626,3 +626,17 @@ GO
 INSERT INTO ProductGroupStructure(Keynote,ID2,Level2,ID3,Level3)
 VALUES('27.2','27','Other','27.02','Other - Other products electro mechanical')
 GO
+
+ALTER TABLE ProductGroupStructure
+ADD ProductType VARCHAR(MAX)
+GO
+
+UPDATE PGS
+SET PGS.ProductType = P.ProductType
+FROM ProductGroupStructure PGS
+JOIN Products P ON PGS.Keynote = P.Keynote
+GO
+
+
+
+

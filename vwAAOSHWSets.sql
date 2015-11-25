@@ -8,32 +8,34 @@ GO
 CREATE VIEW dbo.vwAAOSHWSets
 AS
 SELECT DISTINCT 
-	   AH.[ID]
-	  ,[ProjectID]
-      ,[SetName]
-      ,[SetDesc]
-	  ,[DHI]
-      ,[Product]
-      ,[Qty]
-      ,[Leaf]
-      ,AH.[Description]
-      ,AH.[Finish]
-      ,[TypeDescription]
-      ,[Mfr]
-      ,[Price]
-      ,[IDs]
-      ,[ImageIDs]
-      ,[Size]
-      ,[OriginalSet]
-      ,[HWComplete]
-	  ,REPLACE(AH.[Description], AH.Finish,'') AS ProductID
-	  ,CASE WHEN AH.Mfr IN ('AB', 'AR', 'AS', 'AY', 'NM', 'TR', 'UN', 'YL') THEN 'AA' ELSE 'Non AA' END AS AAVendor
-	  ,CASE WHEN AH.Mfr IN ('AB', 'AR', 'AS', 'AY', 'NM', 'TR', 'UN', 'YL') AND ISNULL(P.ProductID, '') = '' THEN 'Yes' ELSE 'No' END AS CustomisedFlag
-	  ,ISNULL(P.ID, CHECKSUM(REPLACE(AH.[Description], AH.Finish,''))) AS PSID
-FROM [dbo].[AAOSHWSets] AH
-LEFT JOIN [dbo].[Products] P
-ON REPLACE([Description], AH.Finish,'') COLLATE DATABASE_DEFAULT = P.ProductID COLLATE DATABASE_DEFAULT
-INNER JOIN dbo.vwAAOSProjects vAP ON AH.ProjectID = vAP.ID
-WHERE ISNULL(AH.[Description],'') <> ''
-
-
+	AH.*,
+	CHECKSUM(ISNULL(P.ProductID, ISNULL(P2.ProductID, P3.ProductID)) + ISNULL(CAST(AH.Price AS VARCHAR(MAX)), '-1')) AS PID
+FROM dbo.MI_AAOSHWSets AH
+INNER JOIN dbo.vwAAOSProjects vAP 
+ON AH.ProjectID = vAP.ID
+LEFT OUTER JOIN dbo.Products P
+ON AH.[Description] COLLATE DATABASE_DEFAULT = P.ProductID COLLATE DATABASE_DEFAULT
+LEFT OUTER JOIN [dbo].[Products] P2
+ON REPLACE(AH.[Description], AH.Finish,'') = P2.ProductID COLLATE DATABASE_DEFAULT
+LEFT OUTER JOIN [dbo].[Products] P3
+ON AH.[Description] + '-' + AH.Finish = P3.ProductID COLLATE DATABASE_DEFAULT
+WHERE ISNULL(P.ProductID, ISNULL(P2.ProductID, P3.ProductID)) IS NOT NULL
+AND AH.[Description] <> ''
+UNION
+SELECT DISTINCT 
+	AH.*,
+	CHECKSUM(ISNULL(AH.[Description] COLLATE DATABASE_DEFAULT, '-1') + ISNULL(AH.Finish COLLATE DATABASE_DEFAULT, '-1') + ISNULL(AH.TypeDescription COLLATE DATABASE_DEFAULT, '-1') + ISNULL(AH.Mfr COLLATE DATABASE_DEFAULT, '-1') + ISNULL(PGS.Level2 COLLATE DATABASE_DEFAULT, '-1') + ISNULL(CAST(AH.Price AS VARCHAR(MAX)), '-1')) AS PID
+FROM dbo.MI_AAOSHWSets AH
+INNER JOIN dbo.vwAAOSProjects vAP 
+ON AH.ProjectID = vAP.ID
+LEFT OUTER JOIN dbo.Products P
+ON AH.[Description] COLLATE DATABASE_DEFAULT = P.ProductID COLLATE DATABASE_DEFAULT
+LEFT OUTER JOIN [dbo].[Products] P2
+ON REPLACE(AH.[Description], AH.Finish,'') = P2.ProductID COLLATE DATABASE_DEFAULT
+LEFT OUTER JOIN [dbo].[Products] P3
+ON AH.[Description] + '-' + AH.Finish = P3.ProductID COLLATE DATABASE_DEFAULT
+LEFT OUTER JOIN dbo.ProductGroupStructure PGS
+ON CASE WHEN ISNULL(AH.Product, '') = '' THEN '' ELSE SUBSTRING(AH.Product, 1, CHARINDEX('-', AH.Product)-1) END = PGS.ProductType COLLATE DATABASE_DEFAULT
+WHERE ISNULL(P.ProductID, ISNULL(P2.ProductID, P3.ProductID)) IS NOT NULL
+AND AH.[Description] <> ''
+GO

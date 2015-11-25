@@ -7,25 +7,7 @@ GO
 
 CREATE VIEW dbo.vwAAOSConsultants
 AS
-SELECT [ID]
-      ,[Region]
-      ,[Territory]
-      ,[LocState]
-      ,[FirstName] + ' ' + [LastName] AS FullName
-      ,[Company]
-      ,[AccessClass]
-      ,[Title]
-      ,[Address]
-      ,[City]
-      ,[State]
-      ,[Zip]
-      ,[Phone]
-      ,[Fax]
-      ,[Cell]
-      ,[Email]
-      ,[Username]
-      ,[Password]
-      ,[Active]
-      ,[BIMTeam]
-  FROM dbo.[AAOSConsultants]
+SELECT	AC.*,
+		AC.FirstName + ' ' + AC.LastName AS FullName
+FROM	dbo.MI_AAOSConsultants AC
 
