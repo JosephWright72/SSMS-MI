@@ -8,7 +8,7 @@ GO
 CREATE VIEW dbo.vwProducts
 AS
 SELECT DISTINCT 
-	CHECKSUM(ISNULL(P.ProductID, ISNULL(P2.ProductID, P3.ProductID)) + ISNULL(PH.Price, '-1') COLLATE DATABASE_DEFAULT) AS ID,
+	CHECKSUM(ISNULL(P.ProductID, ISNULL(P2.ProductID, P3.ProductID)) + ISNULL(CAST(CAST(PH.Price AS DECIMAL(19,2)) AS VARCHAR(MAX)), '-1') COLLATE DATABASE_DEFAULT) AS ID,
 	ISNULL(P.ProductID, ISNULL(P2.ProductID, P3.ProductID)) COLLATE DATABASE_DEFAULT AS ProductID,
 	ISNULL(P.Finish, ISNULL(P2.Finish, P3.Finish)) COLLATE DATABASE_DEFAULT AS Finish,
 	ISNULL(P.ProductDescription, ISNULL(P2.ProductDescription, P3.ProductDescription)) COLLATE DATABASE_DEFAULT AS ProductDescription,
@@ -17,9 +17,9 @@ SELECT DISTINCT
 	'No' AS CustomisedFlag,
 	ISNULL(P.ProductLine, ISNULL(P2.ProductLine, P3.ProductLine)) AS ProductLine,
 	PGS.Keynote, 
-	ISNULL(PGS.Level2, 'Unknown') AS [Type],
-	PGS.Level3 AS SubType,
-	CAST(PH.Price AS DECIMAL (10,2)) AS Price
+	CASE WHEN PGS.Level2 IS NOT NULL THEN PGS.Level2 WHEN PH.Manf IN ('AB', 'AR', 'AS', 'AY', 'NM', 'TR', 'UN', 'YL') THEN 'AA Modified' ELSE 'Non AA Custom'  END AS [Type],
+	CASE WHEN PGS.Level3 IS NOT NULL THEN PGS.Level3 WHEN PH.Manf IN ('AB', 'AR', 'AS', 'AY', 'NM', 'TR', 'UN', 'YL') THEN 'AA Modified' ELSE 'Non AA Custom'  END AS SubType,
+	CAST(PH.Price AS DECIMAL (19,2)) AS Price
 FROM dbo.MI_AAOSProjectHardware PH
 LEFT OUTER JOIN dbo.Products P
 ON PH.[Description] COLLATE DATABASE_DEFAULT = P.ProductID COLLATE DATABASE_DEFAULT
@@ -34,7 +34,7 @@ ON ISNULL(P.Keynote, ISNULL(P2.Keynote, P3.Keynote)) = PGS.Keynote
 WHERE ISNULL(P.ProductID, ISNULL(P2.ProductID, P3.ProductID)) IS NOT NULL
 UNION
 SELECT DISTINCT 
-	CHECKSUM(ISNULL(PH.[Description], '-1') + ISNULL(PH.Finish, '-1') + ISNULL(PH.HdwTypeDescription, '-1') + ISNULL(PH.Manf, '-1') + ISNULL(PGS.Level2, '-1') + ISNULL(PH.Price, '-1') COLLATE DATABASE_DEFAULT) AS ID,
+	CHECKSUM(ISNULL(PH.[Description], '-1') + ISNULL(PH.Finish, '-1') + ISNULL(PH.HdwTypeDescription, '-1') + ISNULL(PH.Manf, '-1') + ISNULL(CASE WHEN PGS.Level2 IS NOT NULL THEN PGS.Level2 WHEN PH.Manf IN ('AB', 'AR', 'AS', 'AY', 'NM', 'TR', 'UN', 'YL') THEN 'AA Modified' ELSE 'Non AA Custom'  END, '-1') + ISNULL(CAST(CAST(PH.Price AS DECIMAL(19,2)) AS VARCHAR(MAX)), '-1') COLLATE DATABASE_DEFAULT) AS ID,
 	PH.[Description] AS ProductID,
 	PH.Finish,
 	PH.HdwTypeDescription ProductDescription,
@@ -43,9 +43,9 @@ SELECT DISTINCT
 	'Yes' AS CustomisedFlag,
 	NULL AS ProductLine,
 	'Unknown' AS Keynote, 
-	ISNULL(PGS.Level2, 'Unknown') AS [Type],
-	'Unknown' AS SubType,
-	CAST(PH.Price AS DECIMAL(10,2)) AS Price
+	CASE WHEN PGS.Level2 IS NOT NULL AND PH.Manf IN ('AB', 'AR', 'AS', 'AY', 'NM', 'TR', 'UN', 'YL') THEN PGS.Level2 WHEN PH.Manf IN ('AB', 'AR', 'AS', 'AY', 'NM', 'TR', 'UN', 'YL') THEN 'AA Modified' ELSE 'Non AA Custom'  END AS [Type],
+	CASE WHEN PH.Manf IN ('AB', 'AR', 'AS', 'AY', 'NM', 'TR', 'UN', 'YL') THEN 'AA Modified' ELSE 'Non AA Custom'  END AS SubType,
+	CAST(PH.Price AS DECIMAL(19,2)) AS Price
 FROM dbo.MI_AAOSProjectHardware PH
 INNER JOIN dbo.vwAAOSProjects vAP 
 ON PH.ProjectID = vAP.ID
